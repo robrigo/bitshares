@@ -1,4 +1,11 @@
+#pragma once
+#include <bts/chain/types.hpp>
+
 namespace bts { namespace chain {
+   enum operation_type
+   {
+      null_op_type = 0
+   };
 
    struct operation 
    {
@@ -20,7 +27,7 @@ namespace bts { namespace chain {
       template<typename OperationType>
       OperationType as()const
       {
-         FC_ASSERT( (operation_type_enum)type == OperationType::type, 
+         FC_ASSERT( (operation_type)type == OperationType::type, 
                     "", ("type",type)("OperationType",OperationType::type) );
 
          return fc::raw::unpack<OperationType>(data);
@@ -52,12 +59,13 @@ namespace bts { namespace chain {
 
    struct signed_transaction : public transaction
    {
-      vector<compact_signature> signatures;
+      vector<signature_type> signatures;
    };
 
 
 } }
 
+FC_REFLECT_ENUM( bts::chain::operation_type, (null_op_type) )
 FC_REFLECT( bts::chain::operation, (type)(data) )
 FC_REFLECT( bts::chain::transaction, (expiration)(operations) )
 FC_REFLECT_DERIVED( bts::chain::signed_transaction, (bts::chain::transaction), (signatures) )

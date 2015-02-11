@@ -4,6 +4,8 @@ namespace bts { namespace chain {
 
 void database::save_undo( const shared_ptr<object>& obj )
 {
+   FC_ASSERT( obj );
+   auto id = obj->id;
    auto current_undo = _undo_state.back().old_values.find(id);
    if( current_undo == _undo_state.back().old_values.end() )
    {
@@ -31,12 +33,12 @@ void database::undo()
       {
          auto obj_itr = _loaded_objects.find( item.first );
          FC_ASSERT( obj_itr != _loaded_objects.end() );
-         _obj_itr->second->unpack( item.second );
+         obj_itr->second->unpack( item.second );
       }
    }
-   for( auto item : undo_state.back().old_account_index )
+   for( auto item : _undo_state.back().old_account_index )
    {
-      if( item.second != 0 ) 
+      if( item.second.value != 0 ) 
       { 
          _account_index[item.first] = get<account>(item.second); 
       }
@@ -51,7 +53,7 @@ void database::undo()
 
 void database::index_account( const object_pointer<account>& a )
 {
-   auto name    = a.get(this)->name;
+   auto name    = a.get()->name;
    auto cur_itr = _account_index.find(name);
    if( cur_itr != _account_index.end() )
    {
@@ -94,6 +96,6 @@ void database::apply_transaction( const signed_transaction& trx )
       undo();
       throw *except;
    }
-} FC_CAPTURE_AND_RETHROW( (new_block) ) }
+} FC_CAPTURE_AND_RETHROW( (trx) ) }
 
 } } // namespace bts::chain

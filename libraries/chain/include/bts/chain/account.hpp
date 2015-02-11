@@ -11,9 +11,9 @@ namespace bts { namespace chain {
          virtual void          unpack( const packed_object& obj ) override { obj.unpack(*this); }
 
          string                             name;
-         authority                          owner;
-         authority                          active;
-         map<asset_pointer,balance_pointer> balances;
+      //   authority                          owner;
+      //   authority                          active;
+      //   map<asset_pointer,balance_pointer> balances;
    };
 }} 
 FC_REFLECT_DERIVED( bts::chain::account, (bts::chain::object), (name) )
