@@ -1,5 +1,6 @@
 #pragma once
 #include <bts/chain/types.hpp>
+#include <fc/io/raw.hpp>
 
 namespace bts { namespace chain {
 

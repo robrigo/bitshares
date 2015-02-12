@@ -12,11 +12,11 @@ namespace bts { namespace chain {
       public:
          object_pointer(){}
          object_pointer( const std::shared_ptr<T>& ptr )
-         { if( ptr ) id = ptr->id(); }
+         { if( ptr ) id = ptr->id; }
          object_pointer& operator = ( const std::shared_ptr<T>& ptr )
-         { if( ptr ) id = ptr->id(); return *this; }
+         { if( ptr ) id = ptr->id; return *this; }
          object_pointer& operator = ( const std::shared_ptr<const T>& ptr )
-         { if( ptr ) id = ptr->id(); return *this; }
+         { if( ptr ) id = ptr->id; return *this; }
 
          explicit operator bool()const { return id != 0; }
 
@@ -53,7 +53,7 @@ namespace bts { namespace chain {
          template<typename T>
          object_pointer<T> create()
          {
-            ++_next_object_id.value;
+            ++_next_object_id;
 
             auto obj = std::make_shared<T>();
             obj->id  = _next_object_id;

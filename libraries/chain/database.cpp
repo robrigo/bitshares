@@ -1,4 +1,5 @@
 #include <bts/chain/database.hpp>
+#include <fc/io/raw.hpp>
 
 namespace bts { namespace chain {
 
@@ -38,7 +39,7 @@ void database::undo()
    }
    for( auto item : _undo_state.back().old_account_index )
    {
-      if( item.second.value != 0 ) 
+      if( item.second != 0 ) 
       { 
          _account_index[item.first] = get<account>(item.second); 
       }
