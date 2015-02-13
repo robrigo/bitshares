@@ -1,13 +1,15 @@
 #include <bts/chain/operation_factory.hpp>
 #include <bts/chain/account_operations.hpp>
 #include <bts/chain/asset_operations.hpp>
+#include <fc/io/raw.hpp>
 
 namespace bts { namespace chain { 
    const operation_type create_account_operation::type     = create_account_op_type;
    const operation_type create_user_asset_operation::type  = create_user_asset_op_type;
 
    static bool first_chain = []()->bool{
-      bts::chain::operation_factory::instance().register_operation<withdraw_operation>();
+      bts::chain::operation_factory::instance().register_operation<create_account_operation>();
+      bts::chain::operation_factory::instance().register_operation<create_user_asset_operation>();
       return true;
    }();
 
@@ -27,7 +29,7 @@ namespace bts { namespace chain {
    void operation_factory::from_variant( const fc::variant& in, bts::chain::operation& output )
    { try {
       auto obj = in.get_object();
-      output.type = obj["type"].as<operation_type_enum>();
+      output.type = obj["type"].as<operation_type>();
 
       auto converter_itr = _converters.find( output.type.value );
       FC_ASSERT( converter_itr != _converters.end() );

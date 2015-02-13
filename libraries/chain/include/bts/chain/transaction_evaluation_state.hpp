@@ -1,5 +1,6 @@
 #pragma once
 #include <bts/chain/operations.hpp>
+#include <bts/chain/address.hpp>
 
 namespace bts { namespace chain { 
    /**
@@ -9,7 +10,6 @@ namespace bts { namespace chain {
    class transaction_evaluation_state
    {
       public:
-        
          set<address> signed_by;
    };
 } } // namespace bts::chain 

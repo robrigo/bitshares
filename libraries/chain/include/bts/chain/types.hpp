@@ -32,4 +32,38 @@ namespace bts { namespace chain {
    typedef fc::ripemd160               block_id_type;
    typedef fc::sha256                  digest_type;
    typedef fc::ecc::compact_signature  signature_type;
+   typedef int64_t                     share_type;
+
+
+   struct public_key_type
+   {
+       struct binary_key
+       {
+          binary_key():check(0){}
+          uint32_t                 check;
+          fc::ecc::public_key_data data;
+       };
+
+       fc::ecc::public_key_data key_data;
+
+       public_key_type();
+       public_key_type( const fc::ecc::public_key_data& data );
+       public_key_type( const fc::ecc::public_key& pubkey );
+       explicit public_key_type( const std::string& base58str );
+       operator fc::ecc::public_key_data() const;
+       operator fc::ecc::public_key() const;
+       explicit operator std::string() const;
+       friend bool operator == ( const public_key_type& p1, const fc::ecc::public_key& p2);
+       friend bool operator == ( const public_key_type& p1, const public_key_type& p2);
+       friend bool operator != ( const public_key_type& p1, const public_key_type& p2);
+   };
+
 } }  // bts::chain
+
+namespace fc
+{
+    void to_variant( const bts::chain::public_key_type& var,  fc::variant& vo );
+    void from_variant( const fc::variant& var,  bts::chain::public_key_type& vo );
+}
+FC_REFLECT( bts::chain::public_key_type, (key_data) )
+FC_REFLECT( bts::chain::public_key_type::binary_key, (data)(check) );

@@ -20,6 +20,9 @@ namespace bts { namespace chain {
       operation( operation&& o )
       :type(o.type),data(std::move(o.data)){}
 
+      operation( const operation& o )
+      :type(o.type),data(o.data){}
+
       template<typename OperationType>
       operation( const OperationType& t )
       {

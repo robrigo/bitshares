@@ -51,16 +51,16 @@ namespace bts { namespace chain {
          void index_account( const object_pointer<account>& a );
 
          template<typename T>
-         object_pointer<T> create()
+         std::shared_ptr<T> create()
          {
             ++_next_object_id;
 
             auto obj = std::make_shared<T>();
             obj->id  = _next_object_id;
-            object_pointer<T> ptr(obj);
 
+            _undo_state.back().old_values[obj->id] = packed_object();
             _loaded_objects[obj->id] = obj;
-            return ptr;
+            return obj;
          }
          
          template<typename T>
@@ -88,6 +88,8 @@ namespace bts { namespace chain {
          }
 
          static database& instance();
+
+         object_pointer<account> lookup_account( const string& name )const;
 
       private:
          void save_undo( const shared_ptr<object>& obj );

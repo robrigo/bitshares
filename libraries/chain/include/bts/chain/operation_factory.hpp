@@ -2,6 +2,7 @@
 
 #include <bts/chain/operations.hpp>
 #include <bts/chain/transaction_evaluation_state.hpp>
+#include <bts/chain/exception.hpp>
 
 namespace bts { namespace chain {
 
@@ -62,7 +63,7 @@ namespace bts { namespace chain {
 
           void evaluate( transaction_evaluation_state& eval_state, const operation& op )
           {
-             auto itr = _converters.find( uint8_t(op.type) );
+             auto itr = _converters.find( uint16_t(op.type) );
              if( itr == _converters.end() )
                 FC_THROW_EXCEPTION( bts::chain::unsupported_chain_operation, "", ("op",op) );
              itr->second->evaluate( eval_state, op );

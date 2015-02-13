@@ -99,4 +99,18 @@ void database::apply_transaction( const signed_transaction& trx )
    }
 } FC_CAPTURE_AND_RETHROW( (trx) ) }
 
+database& database::instance()
+{
+   static std::unique_ptr<database> _inst( new database() );
+   return *_inst;
+}
+
+object_pointer<account> database::lookup_account( const string& name )const
+{
+   auto itr = _account_index.find( name );
+   if( itr == _account_index.end() )
+      return object_pointer<account>();
+   return itr->second;
+}
+
 } } // namespace bts::chain

@@ -4,8 +4,13 @@ add_library( bts_chain
              block.cpp 
              database.cpp
              operation_factory.cpp
+             account_operations.cpp
            )
 
 target_link_libraries( bts_chain fc bts_db leveldb )
 target_include_directories( bts_chain
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" )
+
+
+add_executable( chain_test test.cpp)
+target_link_libraries( chain_test bts_chain fc )
