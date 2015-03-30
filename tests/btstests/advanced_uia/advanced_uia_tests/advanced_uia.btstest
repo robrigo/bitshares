@@ -43,7 +43,7 @@ No account found.
 >>> wallet_account_register issuer issuer
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-2014-06-20T14:40:30 PENDING   issuer              issuer              0.00000 XTS             register issuer                             0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              issuer              0.00000 XTS             register issuer                             0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> wallet_account_list_public_keys issuer
 ${ expect_json() }$
@@ -66,7 +66,7 @@ ${ expect_json() }$
 >>> wallet_account_register someone issuer
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-2014-06-20T14:40:30 PENDING   issuer              someone             0.00000 XTS             register someone                            0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              someone             0.00000 XTS             register someone                            0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 ${ expect_regex(r'(?:\s*"[a-zA-Z0-9]+"[,]?){101}') }$
 
 >>> debug_advance_time 1 block
@@ -92,7 +92,7 @@ Returns:
 >>> wallet_uia_create issuer ASSSET "Test Asset" "A test asset" 10000.000
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-2014-06-20T14:40:40 PENDING   issuer              issuer              0.00000 XTS             create ASSSET (Test Asset)                  5,000.00000 XTS     ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              issuer              0.00000 XTS             create ASSSET (Test Asset)                  5,000.00000 XTS     ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -104,12 +104,12 @@ OK
 >>> wallet_uia_update_active_flags issuer ASSSET dynamic_fees true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:41:00 PENDING   issuer              UNKNOWN             0.00000 XTS             add dynamic_fees to authority permsfor A... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add dynamic_fees to authority permsfor A... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> wallet_uia_update_fees issuer ASSSET 5 0.01
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:41:00 PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> blockchain_get_asset ASSSET
 ${ expect_json() }$
@@ -138,7 +138,7 @@ this->issuer_id.valid() || this->name.valid() || this->description.valid() || th
 >>> wallet_uia_update_description issuer ASSSET "Woot!"
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:40:50 PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -186,7 +186,7 @@ OK
 >>> wallet_uia_update_supply issuer ASSSET 100000000000.0000
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:40:50 PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -210,7 +210,7 @@ Returns:
 >>> wallet_uia_update_supply issuer ASSSET 100000.000
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:40:50 PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -240,7 +240,7 @@ OK
 >>> wallet_uia_issue 2000 ASSSET someone "There!"
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-2014-06-20T14:40:50 PENDING   issuer              someone             2,000.000 ASSSET        issue 2,000.000 ASSSET                      0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              someone             2,000.000 ASSSET        There!                      0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -249,8 +249,7 @@ OK
 
 #{ can't update precision if supply > 0 }#
 >>> wallet_uia_update_supply issuer ASSSET 100000.00
-10 assert_exception: Assert Exception
-!this->precision.valid(): 
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_regex(r'(?s).*') }$
 
 >>> debug_advance_time 1 block
@@ -260,8 +259,7 @@ OK
 
 #{ try updating to higher precision }#
 >>> wallet_uia_update_supply issuer ASSSET 100000.0000
-10 assert_exception: Assert Exception
-!this->precision.valid(): 
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_regex(r'(?s).*') }$
 
 >>> debug_advance_time 1 block
@@ -295,7 +293,7 @@ Returns:
 >>> wallet_uia_update_active_flags issuer ASSSET dynamic_max_supply true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:40:50 PENDING   issuer              UNKNOWN             0.00000 XTS             add dynamic_max_supply to authority perm... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add dynamic_max_supply to authority perm... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -304,7 +302,7 @@ OK
 
 #{ try to update max supply to value less than issued supply }#
 >>> wallet_uia_update_supply issuer ASSSET 1000.00
-35005 invalid_asset_amount: invalid asset amount
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_regex(r'(?s).*') }$
 
 >>> debug_advance_time 1 block
@@ -326,7 +324,7 @@ OK
 >>> wallet_uia_update_supply issuer ASSSET 90000.000
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:40:50 PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             update properties for ASSSET                0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -334,57 +332,43 @@ OK
 OK
 
 #{ set "restricted" flag }#
->>> wallet_uia_update_active_flags issuer ASSSET restricted_deposits true
+>>> wallet_uia_update_active_flags issuer ASSSET restricted_accounts true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:41:30 PENDING   issuer              UNKNOWN             0.00000 XTS             add restricted_deposits to authority per... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add restricted_accounts to authority per... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 20
 OK
 
-#{ try issuing restricted shares to issuer }#
+#{ issue restricted shares to issuer }#
 >>> wallet_uia_issue 55555 ASSSET issuer
-10 assert_exception: Assert Exception
-asset_rec->address_is_whitelisted( owner ):
-
-#{ whitelist issuer }#
->>> wallet_uia_update_whitelist issuer ASSSET XTS6MztcCwGPciDNLrodkGdXf33S6raovWDfVieYdNTg92eC45PDf true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:43:50 PENDING   issuer              UNKNOWN             0.00000 XTS             add XTSBcMjERMjXoESq9zjCGBHsX3RbGhNFABUX... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              issuer              55,555.000 ASSSET                                                   0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 21
 OK
 
-#{ try issuing to account name of whitelisted public key }#
->>> wallet_uia_issue 55555 ASSSET issuer
-10 assert_exception: Assert Exception
-asset_rec->address_is_whitelisted( owner ):
-
-#{ issue to pub key of issuer }#
->>> wallet_uia_issue 55555 ASSSET XTS6MztcCwGPciDNLrodkGdXf33S6raovWDfVieYdNTg92eC45PDf
-TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
-======================================================================================================================================================================
-2014-06-20T14:44:00 PENDING   issuer              ANONYMOUS           5,555.000 ASSSET                                                    0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
-
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 22
 OK
+
 >>> wallet_account_balance issuer
 ACCOUNT                         BALANCE
 ============================================================
 issuer                          94,994.50000 XTS
                                 55,555.000 ASSSET
 
+
 #{ send to unauthorized account }#
 >>> wallet_transfer 100 ASSSET issuer someone
 10 assert_exception: Assert Exception
-asset_rec->address_is_whitelisted( owner ):
+asset_rec->address_is_approved( *eval_state.pending_state(), owner ):
 
 >>> debug_advance_time 1 block
 OK
@@ -394,7 +378,7 @@ OK
 #{ issue to unauthorized }#
 >>> wallet_uia_issue 100 ASSSET someone
 10 assert_exception: Assert Exception
-asset_rec->address_is_whitelisted( owner ):
+asset_rec->address_is_approved( *eval_state.pending_state(), owner ):
 
 >>> help wallet_uia_update_whitelist
 Usage:
@@ -410,43 +394,32 @@ Parameters:
 Returns:
   transaction_record
 
-#{ try to authorize someone by account name }#
+#{ whitelist someone by account name }#
 >>> wallet_uia_update_whitelist issuer ASSSET someone true
-10 assert_exception: Assert Exception
-is_valid( base58str ):
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
+======================================================================================================================================================================
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add someone towhitelist for ASSSET          0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 24
 OK
 
-#{ authorize someone by public key }#
->>> wallet_uia_update_whitelist issuer ASSSET XTS59zAznbyRDBZDzKSDXjxwbbuge2W7heUajH3q7ChuyMoENQBNX true
-TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
-======================================================================================================================================================================
-2014-06-20T14:44:20 PENDING   issuer              UNKNOWN             0.00000 XTS             add XTS2yB9xPhVuQwEXe6BxM78sbXXRoKJmw2R9... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
-
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 25
 OK
 
-#{ try sending to account with public key in whitelist }#
+#{ send to account with public key in whitelist }#
 >>> wallet_transfer 100 ASSSET issuer someone
-asset_rec->address_is_whitelisted( owner ):
-    {}
-    th_a  balance_operations.cpp:145 evaluate
-${ expect_regex(r'(?s).*') }$
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
+======================================================================================================================================================================
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              someone             100.000 ASSSET                                                      0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 26
 OK
-
-#{ try sending to public key of someone. Fee handling bugged?  }#
->>> wallet_transfer 100 ASSSET issuer XTS59zAznbyRDBZDzKSDXjxwbbuge2W7heUajH3q7ChuyMoENQBNX
-36005 insufficient_relay_fee: insufficient relay fee
-${ expect_regex(r'(?s).*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -459,41 +432,45 @@ ${ expect_json() }$
 
 #{ try sending to authorized via withdraw address to account authorized by public key }#
 >>> wallet_withdraw_from_address 100 ASSSET XTSEUci2GH1cjDvCireCmeoukCitp8aru725 someone
-10 assert_exception: Assert Exception
-asset_rec->address_is_whitelisted( owner ):
-
-#{ issue to someone authorized via public key }#
->>> wallet_uia_issue 5555 ASSSET XTS59zAznbyRDBZDzKSDXjxwbbuge2W7heUajH3q7ChuyMoENQBNX
+36003 negative_fee: negative fee
+${ expect_json() }$
 
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 28
 OK
 
-#{ authorize someone else }#
-
-#{ send from authorized to unauthorized }#
-#{ send from authorized to authorized }#
-
 #{ set "retractable" flag }#
 >>> wallet_uia_update_active_flags issuer ASSSET retractable_balances true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:45:00 PENDING   issuer              UNKNOWN             0.00000 XTS             add retractable_balances to authority pe... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add retractable_balances to authority pe... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
 >>> debug_wait_for_block_by_number 29
 OK
 
-#{ retract someone's balance }#
+>>> wallet_account_balance_ids someone
+>>> h wallet_uia_retract_balance
+Usage:
+wallet_uia_retract_balance <balance_id> <account_name>                                                Retract all funds from the specified user-issued asset balance record
+Retract all funds from the specified user-issued asset balance record
 
+Parameters:
+  balance_id (address, required): the ID of the balance record
+  account_name (string, required): the local account name that will receive the funds and pay the fee
+
+Returns:
+  transaction_record
+#{ retract someone's balance- balance IDs aren't deterministic, thus it is hard to generate one in a btstest. }#
+>>>  wallet_uia_retract_balance XTS66RCbAW3K18q8koeGePncpmWU2RQKmkpz issuer
 
 #{ set "market_halt" flag }#
 >>> wallet_uia_update_active_flags issuer ASSSET halted_markets true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:45:20 PENDING   issuer              UNKNOWN             0.00000 XTS             add halted_markets to authority permsfor... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add halted_markets to authority permsfor... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 >>> debug_advance_time 1 block
 OK
@@ -502,8 +479,8 @@ OK
 
 #{ create ask }#
 >>> wallet_market_submit_ask issuer  1 XTS 100 ASSSET
-10 assert_exception: Assert Exception
-quote_asset_rec->address_is_whitelisted( owner ):
+35019 market_halted: market halted
+${ expect_json() }$
 
 >>> debug_advance_time 1 block
 OK
@@ -512,8 +489,8 @@ OK
 
 #{ create bid }#
 >>> wallet_market_submit_bid issuer  1.1 XTS 100 ASSSET
-10 assert_exception: Assert Exception
-quote_asset_rec->address_is_whitelisted( owner ):
+35019 market_halted: market halted
+${ expect_json() }$
 
 >>> debug_advance_time 1 block
 OK
@@ -522,6 +499,7 @@ OK
 
 #{ ensure orders weren't executed }#
 >>> wallet_market_order_list XTS ASSSET
+No market orders found.
 
 >>> debug_advance_time 1 block
 OK
@@ -532,7 +510,7 @@ OK
 >>> wallet_uia_update_active_flags issuer ASSSET halted_withdrawals true
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
 ======================================================================================================================================================================
-2014-06-20T14:45:30 PENDING   issuer              UNKNOWN             0.00000 XTS             add halted_withdrawals to authority perm... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
+${ expect_regex(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})[+-](\d{2})\:(\d{2})') }$ PENDING   issuer              UNKNOWN             0.00000 XTS             add halted_withdrawals to authority perm... 0.50000 XTS         ${ expect_regex(r'[0-9a-f]*') }$
 
 #{ send to unauthorized }#
 #{ sent to authorized }#
@@ -542,28 +520,37 @@ TIMESTAMP           BLOCK     FROM                TO                  AMOUNT    
 
 #{ remove "balance_halt" flag }#
 >>> wallet_uia_update_authority_permissions issuer ASSSET halted_withdrawals false
-${ expect_json() }$
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID
+======================================================================================================================================================================
+2014-06-20T14:46:00 PENDING   issuer              UNKNOWN             0.00000 XTS             remove halted_withdrawals from active fl... 0.50000 XTS         35923373
 
 #{ remove "restricted" flag }#
 >>> wallet_uia_update_authority_permissions issuer ASSSET restricted_deposits false
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_json() }$
+
 #{ send to unauthorized }#
 #{ issue to unauthorized }#
 
 #{ remove "retractable" flag }#
 >>> wallet_uia_update_authority_permissions issuer ASSSET retractable_balances false
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_json() }$
+
 #{ retract someone's balance }#
 
 #{ remove "supply_unlimit" flag }#
 >>> wallet_uia_update_authority_permissions issuer ASSSET dynamic_max_supply false
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_json() }$
 #{ issue }#
 #{ issue to someone }#
 
 #{ remove "market_halt" flag }#
 >>> wallet_uia_update_authority_permissions issuer ASSSET halted_markets false
+35013 outstanding_shares_exist: outstanding shares exist
 ${ expect_json() }$
+
 #{ wait }#
 #{ ensure orders were executed }#
 
